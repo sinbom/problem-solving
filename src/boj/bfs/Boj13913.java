@@ -1,4 +1,4 @@
-package boj.dfs;
+package boj.bfs;
 
 import java.io.*;
 import java.util.Arrays;

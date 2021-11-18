@@ -1,4 +1,4 @@
-package boj.dfs;
+package boj.union_find;
 
 import java.io.*;
 import java.util.HashSet;
