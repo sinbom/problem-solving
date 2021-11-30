@@ -17,19 +17,19 @@ public class Boj2225 {
             int k = Integer.parseInt(stringTokenizer.nextToken());
 
             for (int i = 0; i <= n; i++) {
-                dp[1][i] = 1;
+                dp[i][1] = 1;
             }
 
-            for (int i = 2; i <= k; i++) {
-                for (int j = 0; j <= n; j++) {
-                    for (int l = 0; l <= j; l++) {
-                        dp[i][j] += dp[i - 1][j - l];
+            for (int i = 0; i <= n; i++) {
+                for (int j = 2; j <= k; j++) {
+                    for (int l = 0; l <= i; l++) {
+                        dp[i][j] += dp[i - l][j - 1];
                         dp[i][j] %= MOD;
                     }
                 }
             }
 
-            writer.write(dp[k][n] + "");
+            writer.write(dp[n][k] + "");
         }
     }
 
