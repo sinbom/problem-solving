@@ -1,4 +1,4 @@
-package boj.dp;
+package boj.brute_force;
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -31,19 +31,28 @@ public class Boj14391 {
                 }
             }
 
-            go(0, 0);
-            writer.write(answer + "");
+            writer.write(go() + "");
         }
     }
 
-    public static void check() {
+    public static int go() {
+        int max = 0;
+
+        for (int s = 0; s < (1 << (n * m)); s++) {
+            max = Math.max(max, check(s));
+        }
+
+        return max;
+    }
+
+    public static int check(int s) {
         int sum = 0;
         int temp;
 
         for (int i = 0; i < n; i++) {
             temp = 0;
             for (int j = 0; j < m; j++) {
-                if (check[i][j]) {
+                if ((s & (1 << i * m + j)) != 0) {
                     temp = temp * 10 + arr[i][j];
                 } else {
                     sum += temp;
@@ -56,7 +65,7 @@ public class Boj14391 {
         for (int j = 0; j < m; j++) {
             temp = 0;
             for (int i = 0; i < n; i++) {
-                if (!check[i][j]) {
+                if ((s & (1 << i * m + j)) == 0) {
                     temp = temp * 10 + arr[i][j];
                 } else {
                     sum += temp;
@@ -66,27 +75,7 @@ public class Boj14391 {
             sum += temp;
         }
 
-        answer = Math.max(answer, sum);
-    }
-
-    public static void go(int x, int y) {
-        if (x == n) {
-            check();
-            return;
-        }
-
-        int nx = x;
-        int ny = y + 1;
-
-        if (ny == m) {
-            nx = x + 1;
-            ny = 0;
-        }
-
-        check[x][y] = true;
-        go(nx, ny);
-        check[x][y] = false;
-        go(nx, ny);
+        return sum;
     }
 
 }
