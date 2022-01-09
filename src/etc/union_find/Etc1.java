@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  */
 public class Etc1 {
 
-    public static void main(    String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringTokenizer stringTokenizer = new StringTokenizer(reader.readLine());
