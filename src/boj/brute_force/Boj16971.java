@@ -91,11 +91,11 @@ public class Boj16971 {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
                     if (i == x) {
-                        a[y][j] = Main.a[i][j];
+                        a[y][j] = a[i][j];
                     } else if (i == y) {
-                        a[x][j] = Main.a[i][j];
+                        a[x][j] = a[i][j];
                     } else {
-                        a[i][j] = Main.a[i][j];
+                        a[i][j] = a[i][j];
                     }
                 }
             }
@@ -103,11 +103,11 @@ public class Boj16971 {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
                     if (j == x) {
-                        a[i][y] = Main.a[i][j];
+                        a[i][y] = a[i][j];
                     } else if (j == y) {
-                        a[i][x] = Main.a[i][j];
+                        a[i][x] = a[i][j];
                     } else {
-                        a[i][j] = Main.a[i][j];
+                        a[i][j] = a[i][j];
                     }
                 }
             }
