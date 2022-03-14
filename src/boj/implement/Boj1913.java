@@ -1,4 +1,4 @@
-package boj.dp;
+package boj.implement;
 
 import java.io.*;
 
