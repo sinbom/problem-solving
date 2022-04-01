@@ -1,4 +1,4 @@
-package boj.union_find;
+package boj.graph;
 
 import java.io.*;
 import java.util.HashSet;
