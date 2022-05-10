@@ -32,24 +32,26 @@ public class Boj3197 {
 
     public static Node[] swan;
 
-    static public int r, c;
+    public static int rr;
+
+    public static int cc;
 
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringTokenizer stringTokenizer = new StringTokenizer(reader.readLine());
-            r = Integer.parseInt(stringTokenizer.nextToken());
-            c = Integer.parseInt(stringTokenizer.nextToken());
+            rr = Integer.parseInt(stringTokenizer.nextToken());
+            cc = Integer.parseInt(stringTokenizer.nextToken());
             waterQ = new LinkedList<>();
             q = new LinkedList<>();
             swan = new Node[2];
-            map = new char[r][c];
-            visited = new boolean[r][c];
+            map = new char[rr][cc];
+            visited = new boolean[rr][cc];
             int swanIdx = 0;
 
-            for (int r = 0; r < Main.r; ++r) {
+            for (int r = 0; r < rr; ++r) {
                 char[] line = reader.readLine().toCharArray();
-                for (int c = 0; c < Main.c; ++c) {
+                for (int c = 0; c < cc; ++c) {
                     map[r][c] = line[c];
                     if (map[r][c] == 'L') {
                         swan[swanIdx++] = new Node(r, c);
@@ -80,7 +82,7 @@ public class Boj3197 {
                         int nr = now.r + dir[d][0];
                         int nc = now.c + dir[d][1];
 
-                        if (nr >= r || nr < 0 || nc >= c || nc < 0 || visited[nr][nc]) continue;
+                        if (nr >= rr || nr < 0 || nc >= cc || nc < 0 || visited[nr][nc]) continue;
 
                         visited[nr][nc] = true;
 
@@ -107,7 +109,7 @@ public class Boj3197 {
                         int nr = now.r + dir[d][0];
                         int nc = now.c + dir[d][1];
 
-                        if (nr >= r || nr < 0 || nc >= c || nc < 0) continue;
+                        if (nr >= rr || nr < 0 || nc >= cc || nc < 0) continue;
 
                         if (map[nr][nc] == 'X') {
                             map[nr][nc] = '.';
