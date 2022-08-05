@@ -1,20 +1,23 @@
 package boj.dp;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 public class Boj1994 {
 
-    public static int n;
+    private static int n;
 
-    public static int[] arr = new int[2000 + 1];
+    private static int[] arr = new int[2000 + 1];
 
-    public static int[][] dp = new int[2000 + 1][2000 + 1];
+    private static int[][] dp = new int[2000 + 1][2000 + 1];
 
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
-
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
             n = Integer.parseInt(reader.readLine());
 
             for (int i = 0; i < n; i++) {
@@ -23,45 +26,50 @@ public class Boj1994 {
 
             Arrays.sort(arr, 1, n + 1);
 
-            int max = 1;
+            int answer = 1;
 
             for (int i = 1; i <= n; i++) {
                 for (int j = i + 1; j <= n; j++) {
-                    max = Math.max(max, dp(i, j));
+                    answer = Math.max(answer, dp(i, j));
                 }
             }
 
-            writer.write(max + "");
+            writer.append(String.valueOf(answer));
         }
     }
 
-    public static int dp(int i, int j) {
+    private static int dp(int i, int j) {
+        if (i > j) {
+            return 0;
+        }
+
+        if (i == j) {
+            return 1;
+        }
+
         int result = dp[i][j];
 
         if (result != 0) {
             return result;
         }
 
-        int index = binarySearch(arr[j] + arr[j] - arr[i], j + 1);
+        int target = 2 * arr[j] - arr[i];
+        int index = binarySearch(target, j + 1);
 
         if (index == -1) {
             return dp[i][j] = 2;
-        } else {
-            return dp[i][j] = dp(j, index) + 1;
         }
+
+        return dp[i][j] = dp(j, index) + 1;
     }
 
-    public static int binarySearch(int target, int start) {
+    private static int binarySearch(int target, int start) {
         int left = start;
         int right = n;
-        int mid;
+        int mid = (left + right) / 2;
 
-        while (left <= right) {
+        while (left < right) {
             mid = (left + right) / 2;
-
-            if (arr[mid] == target) {
-                return mid;
-            }
 
             if (arr[mid] < target) {
                 left = mid + 1;
@@ -70,6 +78,15 @@ public class Boj1994 {
             }
         }
 
+        if (left <= n && arr[left] == target) {
+            return left;
+        }
+
+        if (arr[mid] == target) {
+            return mid;
+        }
+
         return -1;
     }
+
 }
