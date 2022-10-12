@@ -1,4 +1,4 @@
-package programmers.winter_coding_2021;
+package programmers.kakao_tech_internship_2022;
 
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Math.max;
